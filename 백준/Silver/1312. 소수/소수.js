@@ -9,17 +9,14 @@ const input = fs.readFileSync(file_path).toString().trim();
 const solution = (input) => {
     const [a, b ,n] = input.replace(/\r/g, '').split(' ').map(el => Number(el));
     let remain = a % b;
-    const ac = [];
+    let result = 0;
     for(let i = 0; i < n; i++) {
-        if(remain) {
-            remain *= 10;
-        }
+        remain *= 10;
         const quotient = Math.floor(remain / b);
         remain %= b;
-        ac.push(quotient);
+        result = quotient;
     }
   
-    const result = ac.at(-1);
     return result;
 }
 
