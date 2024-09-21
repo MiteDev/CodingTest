@@ -11,17 +11,6 @@ const solution = (input) => {
   const num = Number(input);
   let answer = 0;
 
-  if (num < 10) {
-    for (let i = 1; i <= num - 1; i++) {
-      if (i + i === num) {
-        answer = i;
-        break;
-      }
-    }
-
-    return answer;
-  }
-
   for (let i = 0; i < num; i++) {
     const add = i
       .toString()
