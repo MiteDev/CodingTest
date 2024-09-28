@@ -9,20 +9,17 @@ const input = fs.readFileSync(file_path).toString().trim();
  */
 const solution = (input) => {
   const [_, ...coordi] = input.replace(/\r/g, "").split("\n");
-  const answer = coordi
+  const arr = coordi.map((el) => el.split(" ").map(Number));
+  const answer = arr
     .sort((a, b) => {
-      const [a_x, a_y] = a.split(" ").map(Number);
-      const [b_x, b_y] = b.split(" ").map(Number);
-
-      if (a_x > b_x) return 1;
-      if (a_x < b_x) return -1;
-      if (a_x === b_x) {
-        if (a_y > b_y) return 1;
-        if (a_y < b_y) return -1;
+      if (a[0] - b[0] == 0) {
+        return a[1] - b[1];
+      } else {
+        return a[0] - b[0];
       }
     })
+    .map(([x, y]) => `${x.toString()} ${y.toString()}`)
     .join("\n");
-
   return answer;
 };
 
