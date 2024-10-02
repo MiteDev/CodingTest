@@ -10,28 +10,17 @@ const input = fs.readFileSync(file_path).toString().trim();
 const solution = (input) => {
   const [_, ...arr] = input.replace(/\r/g, "").split("\n");
   const stack = [];
+  const answer = [];
 
   arr.forEach((line) => {
-    switch (line) {
-      case "pop":
-        const p = stack.pop();
-        p ? console.log(p) : console.log(-1);
-        break;
-      case "size":
-        console.log(stack.length);
-        break;
-      case "empty":
-        stack.length ? console.log(0) : console.log(1);
-        break;
-      case "top":
-        const at = stack.at(-1);
-        at ? console.log(at) : console.log(-1);
-        break;
-      default:
-        stack.push(parseInt(line.split(" ")[1]));
-        break;
-    }
+    if (line.includes("push")) stack.push(parseInt(line.split(" ")[1]));
+    else if (line === "pop") answer.push(stack.length ? stack.pop() : -1);
+    else if (line === "size") answer.push(stack.length);
+    else if (line === "empty") answer.push(stack.length ? 0 : 1);
+    else if (line === "top") answer.push(stack.length ? stack.at(-1) : -1);
   });
+
+  return answer.join("\n");
 };
 
-solution(input);
+console.log(solution(input));
